@@ -2,33 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
+
 class BookController extends Controller
 {
     public function index()
     {
-        $books = [
-            [
-                'judul' => 'Laskar Pelangi',
-                'penulis' => 'Andrea Hirata',
-                'tahun' => 2005
-            ],
-            [
-                'judul' => 'Bumi',
-                'penulis' => 'Tere Liye',
-                'tahun' => 2014
-            ],
-            [
-                'judul' => 'Dilan 1990',
-                'penulis' => 'Pidi Baiq',
-                'tahun' => 2014
-            ],
-            [
-                'judul' => 'Perahu Kertas',
-                'penulis' => 'Dee Lestari',
-                'tahun' => 2009
-            ]
-        ];
-
+        $books = Book::all();
         return view('books.index', compact('books'));
     }
 
