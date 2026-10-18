@@ -19,6 +19,12 @@
     <hr>
 
     <main>
+        @if (session('success'))
+            <div id="notif" style="background:#d4edda; color:#155724; border:1px solid #c3e6cb; padding:10px 14px; margin-bottom:14px; border-radius:4px;">
+                {{ session('success') }}
+            </div>
+        @endif
+
         @yield('content')
     </main>
 
@@ -27,6 +33,14 @@
     <footer>
         <p>Library System</p>
     </footer>
+
+    <script>
+        // Notifikasi hilang otomatis setelah 4 detik
+        const notif = document.getElementById('notif');
+        if (notif) {
+            setTimeout(() => notif.style.display = 'none', 4000);
+        }
+    </script>
 
 </body>
 </html>

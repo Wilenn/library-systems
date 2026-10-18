@@ -4,42 +4,39 @@
 
     <h2>Tambah Buku</h2>
 
-    @if ($errors->any())
-        <div style="color: red;">
-            <p>Terjadi kesalahan pada isian Anda:</p>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
     <form action="{{ route('books.store') }}" method="POST">
         @csrf
 
         <div style="margin-bottom: 12px;">
             <label for="title">Judul Buku</label><br>
-            <input type="text" id="title" name="title" value="{{ old('title') }}" placeholder="Contoh: Pemrograman PHP"
-                required>
+            <input type="text" id="title" name="title" value="{{ old('title') }}">
+            @error('title')
+                <p style="color: red; margin: 4px 0;">{{ $message }}</p>
+            @enderror
         </div>
 
         <div style="margin-bottom: 12px;">
             <label for="author">Penulis</label><br>
-            <input type="text" id="author" name="author" value="{{ old('author') }}" placeholder="Contoh: Tere Liye"
-                required>
+            <input type="text" id="author" name="author" value="{{ old('author') }}">
+            @error('author')
+                <p style="color: red; margin: 4px 0;">{{ $message }}</p>
+            @enderror
         </div>
 
         <div style="margin-bottom: 12px;">
             <label for="year">Tahun Terbit</label><br>
-            <input type="number" id="year" name="year" value="{{ old('year') }}" placeholder="Contoh: 2024"
-                min="1900" max="{{ date('Y') }}" required>
+            <input type="text" id="year" name="year" value="{{ old('year') }}">
+            @error('year')
+                <p style="color: red; margin: 4px 0;">{{ $message }}</p>
+            @enderror
         </div>
 
         <div style="margin-bottom: 12px;">
             <label for="stock">Stok</label><br>
-            <input type="number" id="stock" name="stock" value="{{ old('stock') }}" placeholder="Contoh: 5"
-                min="0" required>
+            <input type="text" id="stock" name="stock" value="{{ old('stock') }}">
+            @error('stock')
+                <p style="color: red; margin: 4px 0;">{{ $message }}</p>
+            @enderror
         </div>
 
         <button type="submit">Simpan</button>
