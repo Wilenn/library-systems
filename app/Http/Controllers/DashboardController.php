@@ -8,7 +8,7 @@ class DashboardController extends Controller
     {
         $jumlahBuku = 4;
         $jumlahMember = 5;
-        $jumlahKategori = 3;
+        $jumlahKategori = 7;
 
         return view('dashboard.index', compact(
             'jumlahBuku',

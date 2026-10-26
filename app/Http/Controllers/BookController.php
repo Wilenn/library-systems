@@ -4,21 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class BookController extends Controller
 {
     public function index()
     {
-        $books = Book::latest()->get();
+        $title = 'Daftar Buku';
+        $books = Book::with('category')->latest()->get();
 
         return view('books.index', compact('books'));
     }
 
     public function create()
     {
-        return view('books.create');
-    }
+        $categories = Category::orderBy('name')->get();
 
+        return view('books.create', compact('categories'));
+    }
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -26,6 +29,7 @@ class BookController extends Controller
             'author' => 'required|string|min:3|max:255|regex:/^[\pL\s\.\,\'\-]+$/u',
             'year'   => 'required|integer|digits:4|between:1900,' . date('Y'),
             'stock'  => 'required|integer|min:0|max:1000',
+            'category_id' => 'required|exists:categories,id'
         ], $this->messages());
 
         Book::create($validated);
@@ -41,7 +45,9 @@ class BookController extends Controller
 
     public function edit(Book $book)
     {
-        return view('books.edit', compact('book'));
+        $categories = Category::orderBy('name')->get();
+
+        return view('books.edit', compact('book', 'categories'));
     }
 
     public function update(Request $request, Book $book)
@@ -51,6 +57,7 @@ class BookController extends Controller
             'author' => 'required|string|min:3|max:255|regex:/^[\pL\s\.\,\'\-]+$/u',
             'year'   => 'required|integer|digits:4|between:1900,' . date('Y'),
             'stock'  => 'required|integer|min:0|max:1000',
+            'category_id' => 'required|exists:categories,id'
         ], $this->messages());
 
         $book->update($validated);
@@ -85,6 +92,8 @@ class BookController extends Controller
             'stock.integer'   => 'Stok harus berupa bilangan bulat.',
             'stock.min'       => 'Stok tidak boleh negatif.',
             'stock.max'       => 'Stok maksimal 1000.',
+            'category_id.required' => 'Kategori wajib dipilih.',
+            'category_id.exists'   => 'Kategori yang dipilih tidak tersedia.',
         ];
     }
 }

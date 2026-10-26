@@ -10,6 +10,11 @@ class CategoryController extends Controller
             'Fiksi',
             'Non-Fiksi',
             'Pendidikan',
+            'komik dan Manga',
+            'romance',
+            'fantasi dan petualangan',
+            'pengembangan diri',
+            'puisi dan musik'
         ];
 
         return view('categories.index', compact('categories'));
