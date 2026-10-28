@@ -9,7 +9,7 @@ class Category extends Model
 {
     protected $fillable = ['name'];
 
-    public function books()
+    public function books(): HasMany
     {
         return $this->hasMany(Book::class);
     }

@@ -5,9 +5,11 @@
     <h2>Daftar Kategori</h2>
 
     <ul>
-        @foreach($categories as $category)
+        @forelse($categories as $category)
             <li>{{ $category }}</li>
-        @endforeach
+        @empty
+            <li>Belum ada kategori.</li>
+        @endforelse
     </ul>
 
 @endsection

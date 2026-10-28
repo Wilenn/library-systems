@@ -27,7 +27,6 @@
                     <td>{{ $book->year }}</td>
                     <td>{{ $book->stock }}</td>
                     <td>
-                        <h3>{{ $book->title }} {{ $book->category->name ?? 'Kategori tidak tersedia' }}</h3>
                         <a href="{{ route('books.show', $book) }}">Detail</a>
                         <a href="{{ route('books.edit', $book) }}">Edit</a>
                         <form action="{{ route('books.destroy', $book) }}" method="POST" style="display:inline">
@@ -39,7 +38,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="6">Belum ada data buku.</td>
+                    <td colspan="7">Belum ada data buku.</td>
                 </tr>
             @endforelse
         </tbody>

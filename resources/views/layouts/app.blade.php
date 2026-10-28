@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
+    <meta charset="UTF-8">
     <title>Library System</title>
 </head>
 <body>
@@ -10,10 +11,10 @@
     </header>
 
     <nav>
-        <a href="/dashboard">Dashboard</a> |
-        <a href="/books">Books</a> |
-        <a href="/categories">Categories</a> |
-        <a href="/members">Members</a>
+        <a href="{{ route('dashboard') }}">Dashboard</a> |
+        <a href="{{ route('books.index') }}">Books</a> |
+        <a href="{{ route('categories.index') }}">Categories</a> |
+        <a href="{{ route('members.index') }}">Members</a>
         @auth
             |
             <form action="{{ route('logout') }}" method="POST" style="display:inline;">
