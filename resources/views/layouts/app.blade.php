@@ -14,6 +14,13 @@
         <a href="/books">Books</a> |
         <a href="/categories">Categories</a> |
         <a href="/members">Members</a>
+        @auth
+            |
+            <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+                @csrf
+                <button type="submit">Logout</button>
+            </form>
+        @endauth
     </nav>
 
     <hr>

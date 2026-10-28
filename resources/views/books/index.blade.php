@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
     <h2>Daftar Buku</h2>
 
     <a href="{{ route('books.create') }}">+ Tambah Buku</a>
@@ -28,7 +27,7 @@
                     <td>{{ $book->year }}</td>
                     <td>{{ $book->stock }}</td>
                     <td>
-                        <h3>{{ $book->title }}  {{ $book->category->name ?? 'Kategori tidak tersedia' }}</h3>
+                        <h3>{{ $book->title }} {{ $book->category->name ?? 'Kategori tidak tersedia' }}</h3>
                         <a href="{{ route('books.show', $book) }}">Detail</a>
                         <a href="{{ route('books.edit', $book) }}">Edit</a>
                         <form action="{{ route('books.destroy', $book) }}" method="POST" style="display:inline">
@@ -45,5 +44,6 @@
             @endforelse
         </tbody>
     </table>
-
 @endsection
+
+
