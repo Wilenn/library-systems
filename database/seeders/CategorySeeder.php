@@ -16,11 +16,11 @@ class CategorySeeder extends Seeder
             'Fiksi',
             'Non-Fiksi',
             'Pendidikan',
-            'Komik dan Manga',
-            'Romance',
-            'Fantasi dan Petualangan',
+            'Komik & Manga',
+            'Romansa',
+            'Fantasi & Petualangan',
             'Pengembangan Diri',
-            'Puisi dan Musik',
+            'Puisi & Musik',
         ];
 
         foreach ($names as $name) {

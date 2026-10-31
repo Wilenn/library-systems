@@ -26,7 +26,7 @@ class BookRequest extends FormRequest
             ],
             'author' => ['required', 'string', 'min:3', 'max:255', "regex:/^[\pL\s\.\,\'\-]+$/u"],
             // Kolom MySQL YEAR hanya menerima 1901-2155, jadi batas bawah 1901.
-            'year' => ['required', 'integer', 'digits:4', 'between:1901,' . date('Y')],
+            'year' => ['required', 'integer', 'digits:4', 'between:1901,'.date('Y')],
             'stock' => ['required', 'integer', 'min:0', 'max:1000'],
             'category_id' => ['required', 'exists:categories,id'],
         ];
@@ -45,7 +45,7 @@ class BookRequest extends FormRequest
             'year.required' => 'Tahun terbit wajib diisi.',
             'year.integer' => 'Tahun terbit harus berupa angka.',
             'year.digits' => 'Tahun terbit harus 4 digit.',
-            'year.between' => 'Tahun terbit harus antara 1901 sampai ' . date('Y') . '.',
+            'year.between' => 'Tahun terbit harus antara 1901 sampai '.date('Y').'.',
             'stock.required' => 'Stok wajib diisi.',
             'stock.integer' => 'Stok harus berupa bilangan bulat.',
             'stock.min' => 'Stok tidak boleh negatif.',

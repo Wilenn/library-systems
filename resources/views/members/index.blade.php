@@ -5,9 +5,11 @@
     <h2>Daftar Member</h2>
 
     <ul>
-        @foreach($members as $member)
+        @forelse($members as $member)
             <li>{{ $member }}</li>
-        @endforeach
+        @empty
+            <li>Belum ada member.</li>
+        @endforelse
     </ul>
 
 @endsection

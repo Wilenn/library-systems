@@ -12,13 +12,16 @@ class DatabaseSeeder extends Seeder
 
     public function run(): void
     {
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // firstOrCreate agar `db:seed` bisa dijalankan berulang tanpa error.
+        User::firstOrCreate(
+            ['email' => 'test@example.com'],
+            ['name' => 'Test User', 'password' => 'password'] // di-hash otomatis oleh cast 'hashed'
+        );
 
         $this->call([
+            UserSeeder::class,
             CategorySeeder::class,
+            MemberSeeder::class,
             BookSeeder::class,
         ]);
     }

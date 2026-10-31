@@ -20,7 +20,7 @@
         <tbody>
             @forelse ($books as $book)
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $books->firstItem() + $loop->index }}</td>
                     <td>{{ $book->title }}</td>
                     <td>{{ $book->author }}</td>
                     <td>{{ $book->category?->name ?? 'Belum ada kategori' }}</td>
@@ -43,6 +43,8 @@
             @endforelse
         </tbody>
     </table>
+
+    {{ $books->links('pagination.simple') }}
 @endsection
 
 

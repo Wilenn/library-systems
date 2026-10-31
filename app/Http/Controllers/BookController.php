@@ -10,7 +10,7 @@ class BookController extends Controller
 {
     public function index()
     {
-        $books = Book::with('category')->latest()->get();
+        $books = Book::with('category')->latest()->latest('id')->paginate(10);
 
         return view('books.index', compact('books'));
     }
