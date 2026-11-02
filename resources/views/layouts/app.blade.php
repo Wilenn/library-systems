@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <title>Library System</title>
 </head>
+
 <body>
 
     <header>
@@ -15,6 +17,9 @@
         <a href="{{ route('books.index') }}">Books</a> |
         <a href="{{ route('categories.index') }}">Categories</a> |
         <a href="{{ route('members.index') }}">Members</a>
+        @can('manage-users')
+            | <a href="{{ route('users.index') }}">Kelola Pengguna</a>
+        @endcan
         @auth
             |
             <form action="{{ route('logout') }}" method="POST" style="display:inline;">
@@ -28,7 +33,8 @@
 
     <main>
         @if (session('success'))
-            <div id="notif" style="background:#d4edda; color:#155724; border:1px solid #c3e6cb; padding:10px 14px; margin-bottom:14px; border-radius:4px;">
+            <div id="notif"
+                style="background:#d4edda; color:#155724; border:1px solid #c3e6cb; padding:10px 14px; margin-bottom:14px; border-radius:4px;">
                 {{ session('success') }}
             </div>
         @endif
@@ -51,4 +57,5 @@
     </script>
 
 </body>
+
 </html>
