@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Borrowing;
 use App\Models\Category;
 use App\Models\Member;
 
@@ -13,11 +14,15 @@ class DashboardController extends Controller
         $jumlahBuku = Book::count();
         $jumlahMember = Member::count();
         $jumlahKategori = Category::count();
+        $jumlahPeminjaman = Borrowing::count();
+        $jumlahPeminjamanBerjalan = Borrowing::where('status', 'borrowed')->count();
 
         return view('dashboard.index', compact(
             'jumlahBuku',
             'jumlahMember',
-            'jumlahKategori'
+            'jumlahKategori',
+            'jumlahPeminjaman',
+            'jumlahPeminjamanBerjalan'
         ));
     }
 }

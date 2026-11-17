@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BorrowingController;
 
 Route::redirect('/', '/dashboard');
 
@@ -31,7 +32,12 @@ Route::middleware('auth')->group(function () {
         ->name('categories.index');
     Route::get('/members', [MemberController::class, 'index'])
         ->name('members.index');
+    Route::resource('borrowings', BorrowingController::class)
+        ->only(['index', 'create', 'store']);
+    Route::post('/borrowings/{borrowing}/return', [BorrowingController::class, 'returnBook'])
+        ->name('borrowings.return');
 });
+
 
 // Hanya admin (Gate manage-users) yang boleh mengelola pengguna.
 Route::middleware(['auth', 'can:manage-users'])->group(function () {
